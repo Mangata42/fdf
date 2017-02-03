@@ -13,11 +13,16 @@
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <stdio.h>
+# include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
-# include <stdio.h>
 # include <limits.h>
+
+# define BUFF_SIZE 64
 
 typedef	struct			s_list
 {
@@ -99,5 +104,7 @@ void					ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list					*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 int						ft_sqrt(int nb);
 void					*ft_realloc(void **dst, int size);
+int						get_next_line(const int fd, char **line);
+void					clean_buffer(char **line, char *buffer);
 
 #endif

@@ -76,7 +76,8 @@ SRC = ft_memset.c \
 		ft_lstmap.c \
 		ft_sqrt.c \
 		ft_realloc.c \
-		ft_strclen.c
+		ft_strclen.c \
+		get_next_line.c
 
 OBJ = ft_memset.o \
  		ft_bzero.o \
@@ -142,7 +143,8 @@ OBJ = ft_memset.o \
 		ft_lstmap.o \
 		ft_sqrt.o \
 		ft_realloc.o \
-		ft_strclen.o
+		ft_strclen.o \
+		get_next_line.o
 
 $(NAME):
 	@gcc $(FLAGS) -c $(SRC)
