@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_H
-# define MLX_H
+#ifndef FDF_H
+# define FDF_H
 
 # include "./libft.h"
 # include "./mlx.h"
