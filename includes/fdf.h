@@ -23,4 +23,14 @@
 # include <stdlib.h>
 # include <math.h>
 
+# define W_HEIGHT 750
+# define W_WIDTH 750
+
+typedef	struct 		s_env
+{
+	void	*mlx;
+	void	*win;
+	void	*img;
+}					t_env;
+
 #endif
