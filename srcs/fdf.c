@@ -12,11 +12,6 @@
 
 #include "../includes/fdf.h"
 
-int 	expose_hook(t_env *env)
-{
-	return (0);
-}
-
 int 	key_hook(int keycode, t_env *env)
 {
 	if (keycode == 53)
@@ -24,22 +19,31 @@ int 	key_hook(int keycode, t_env *env)
 	return (0);
 }
 
-int 	mouse_hook(int button, int x, int y, t_env *env)
+int 	ft_read_map(int fd, char **line)
 {
-	if (button == 1)
-		mlx_string_put(env->mlx, env->win, x, y, 0x31d02b, "42");
+	int ret;
+
+	ret = 42;
+	while (ret > 0)
+	{
+		ret = get_next_line(fd, line);
+		if (ret < 0)
+			return (-1);
+	}
 	return (0);
 }
 
-int		main(void)
+int		main(int argc, char **argv)
 {
 	t_env	*env;
+	int 	fd;
 
-	env->mlx = mlx_init();
-	env->win = mlx_new_window(env->mlx, W_WIDTH, W_HEIGHT, "fdf");
-	mlx_mouse_hook(env->win, mouse_hook, env);
+	if (!(fd = open(argv[1], O_RDONLY)))
+		return (-1);
+	env = init_env();
+	if (!ft_read_map(fd, &(env)->map))
+		return (-1);
 	mlx_key_hook(env->win, key_hook, env);
-	mlx_expose_hook(env->win, expose_hook, env);
 	mlx_loop(env->mlx);
 	return (0);
 }

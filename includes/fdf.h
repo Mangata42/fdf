@@ -23,14 +23,22 @@
 # include <stdlib.h>
 # include <math.h>
 
-# define W_HEIGHT 750
-# define W_WIDTH 750
+#define ERROR {ft_putstr("ERROR, exiting ..."); exit(EXIT_FAILURE);}
 
 typedef	struct 		s_env
 {
 	void	*mlx;
 	void	*win;
 	void	*img;
+	int		w_x;
+	int		w_y;
+	char	*img_datas;
+	int		bpp; //bits per pixel = 3
+	int		sl;  //size line = w_x * bpp
+	int		end;
+	char	*map;
 }					t_env;
+
+t_env				*init_env(void);
 
 #endif

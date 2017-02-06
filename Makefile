@@ -11,11 +11,13 @@
 # **************************************************************************** #
 
 NAME = fdf
-SRC = fdf.c
+
+SRC = fdf.c \
+		ft_struct.c
+
 SRCDIR = ./srcs/
 LIBS = -framework OpenGL -framework AppKit -L ./libs -l ft -l mlx
 FLAGS = -Wall- Wextra -Werror
-
 SRCS = $(addprefix $(SRCDIR), $(SRC))
 
 all: $(NAME)
