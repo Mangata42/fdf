@@ -19,16 +19,16 @@ int 	key_hook(int keycode, t_env *env)
 	return (0);
 }
 
-int 	ft_read_map(int fd, char **line)
+int 	ft_read_map(int fd, t_env *env)
 {
-	int ret;
+	char	*line;
 
-	ret = 42;
-	while (ret > 0)
+	line = NULL;
+	while ((get_next_line(fd, &line)) > 0)
 	{
-		ret = get_next_line(fd, line);
-		if (ret < 0)
-			return (-1);
+		env->map = ft_strjoin(env->map, line);
+		env->map = ft_strjoin(env->map, "\n");
+		free(line);
 	}
 	return (0);
 }
@@ -38,11 +38,11 @@ int		main(int argc, char **argv)
 	t_env	*env;
 	int 	fd;
 
-	if (!(fd = open(argv[1], O_RDONLY)))
+	if ((fd = open(argv[1], O_RDONLY)) == -1)
 		return (-1);
 	env = init_env();
-	if (!ft_read_map(fd, &(env)->map))
-		return (-1);
+	ft_read_map(fd, env);
+	ft_putstr(env->map);
 	mlx_key_hook(env->win, key_hook, env);
 	mlx_loop(env->mlx);
 	return (0);
