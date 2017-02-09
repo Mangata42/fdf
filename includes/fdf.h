@@ -6,7 +6,7 @@
 /*   By: nghaddar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 15:13:41 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/02/03 15:17:33 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/02/09 02:39:13 by Mangata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@
 # include <stdlib.h>
 # include <math.h>
 
-#define ERROR {ft_putstr("ERROR, exiting ..."); exit(EXIT_FAILURE);}
-
 typedef	struct 		s_env
 {
 	void	*mlx;
@@ -36,9 +34,11 @@ typedef	struct 		s_env
 	int		bpp; //bits per pixel = 3
 	int		sl;  //size line = w_x * bpp
 	int		end;
-	char	*map;
 }					t_env;
 
+void				ft_error_handler(int error_code);
+int 				key_hook(int keycode, t_env *env);
+int 				ft_read_map(int fd, t_env *env);
 t_env				*init_env(void);
 
 #endif
