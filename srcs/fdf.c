@@ -6,7 +6,7 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 14:18:40 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/02/14 18:35:17 by Mangata          ###   ########.fr       */
+/*   Updated: 2017/02/15 21:41:28 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ int		main(int argc, char **argv)
 		ft_error_handler(0);
 	if ((ft_read_map(fd, &env)) == -1)
 		ft_error_handler(3);
-	mlx_key_hook(env->win, key_hook, env);
-	mlx_expose_hook(env->win, expose_hook, env);
-	mlx_loop_hook(env->mlx, loop_hook, env);
+	mlx_key_hook(env->win, key_hook, &env);
+	mlx_expose_hook(env->win, expose_hook, &env);
 	mlx_loop(env->mlx);
 	return (0);
 }
