@@ -6,30 +6,65 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 14:18:40 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/02/15 23:37:30 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/02/16 18:11:06 by Mangata          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
+void	ft_put_pixel(t_env **env, int pos, void *color_val)
+{
+	char	*col;
+
+	col = color_val;
+	(*env)->img_datas[pos] = col[0];
+	(*env)->img_datas[pos + 1] = col[1];
+	(*env)->img_datas[pos + 2] = col[2];
+	(*env)->img_datas[pos + 3] = 0;
+}
+
 void	ft_draw_grind(t_env	**env)
 {
-	int	x = 0;
-	int	y = 0;
-	int	i = -1;
-	int	white = 0xFFFFFF;
-	int	green = 0x00FF00;
+	t_coords *to_draw;
+	int		white;
+	int		blue;
+	int		pos;
 
-	while ((*env)->map[++i] != '\0')
+	to_draw = (*env)->coords;
+	white = 0xFFFFFF;
+	blue = 0x0000FF;
+	while (to_draw != NULL)
 	{
-		if (ft_atoi((*env)->map[i]) != 0)
-		{
-			(*env)->img_datas = ft_memcpy((*env)->img_datas + 
-				((y * 4000) + (x * 4)), &white, 4);
-		}
-		x++;
+		pos = ((to_draw->y) * 2000) + ((to_draw->x) * 4);
+		if (to_draw->z == 0)
+			ft_put_pixel(env, pos, &white);
+		else
+			ft_put_pixel(env, pos, &blue);
+		to_draw = to_draw->next;
 	}
 	expose_hook(env);
+}
+
+void	ft_store_map(t_env **env, char **split_map)
+{
+	int	x;
+	int	y;
+	int	i;
+
+	i = 0;
+	x = 0;
+	y = 0;
+	while (split_map[i] != '\0')
+	{
+		ft_add_node(env, x, y, ft_atoi(split_map[i]));
+		x++;
+		if (ft_strchr(split_map[i], '\n') != NULL)
+		{
+			x = 0;
+			y++;
+		}
+		i++;
+	}
 }
 
 int		ft_check_map(char *tmp_map, t_env **env)
@@ -41,18 +76,18 @@ int		ft_check_map(char *tmp_map, t_env **env)
 	if (ft_strlen(tmp_map) <= 1)
 		ft_error_handler(4);
 	split_map = ft_strsplit(tmp_map, ' ');
-	x = -1;
-	while (split_map[++x])
+	y = -1;
+	while (split_map[++y])
 	{
-		y = -1;
-		while (split_map[x][++y])
+		x = -1;
+		while (split_map[y][++x])
 		{
-			if (ft_isdigit(split_map[x][y]) == 0 && split_map[x][y] != '\n'
-					&& split_map[x][y] != '-')
+			if (ft_isdigit(split_map[y][x]) == 0 && split_map[y][x] != '\n'
+					&& split_map[y][x] != '-')
 	 			ft_error_handler(5);
 		}
 	}
-	(*env)->map = split_map;
+	ft_store_map(env, split_map);
 	return (0);
 }
 
@@ -75,9 +110,7 @@ int 	ft_read_map(int fd, t_env **env)
 		free(line);
 	}
 	ft_check_map(tmp_map, env);
-	for (int i = 0; (*env)->map[i] != '\0'; i++)
-		ft_putstr((*env)->map[i]);
-	// ft_draw_grind(env);
+	ft_draw_grind(env);
 	free(tmp_map);
 	return (0);
 }

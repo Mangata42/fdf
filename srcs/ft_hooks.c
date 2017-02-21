@@ -16,7 +16,7 @@ int		expose_hook(t_env **env)
 {	
 	mlx_clear_window((*env)->mlx, (*env)->win);
 	mlx_put_image_to_window((*env)->mlx, (*env)->win, (*env)->img, 0, 0);
-	mlx_string_put((*env)->mlx, (*env)->win, 1, 970, 0x00FF00, "fdf");
+	mlx_string_put((*env)->mlx, (*env)->win, W_X / 2 - 10, 10, 0x00FF00, "fdf_beta V.2.0.1");
 	return (0);
 }
 
