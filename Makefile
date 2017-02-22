@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nghaddar <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/03 15:18:33 by nghaddar          #+#    #+#              #
-#    Updated: 2017/02/09 02:39:40 by Mangata          ###   ########.fr        #
+#    Updated: 2017/02/22 10:58:04 by nghaddar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ SRC = fdf.c \
 		ft_struct.c \
 		ft_errors.c \
 		ft_hooks.c \
-		ft_maps.c
+		ft_maps.c \
+		ft_draw.c
 
 SRCDIR = ./srcs/
 LIBS = -framework OpenGL -framework AppKit -L ./libs -l ft -l mlx
