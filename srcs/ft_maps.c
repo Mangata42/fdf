@@ -34,7 +34,7 @@ int 	ft_read_map(t_env **env, int fd)
 	// ft_draw_grind(env);
 	t_coords *test;
 
-	test = ft_copy_struct((*env)->coords);
+	test = ft_copy_struct(&(*env)->coords);
 	ft_print_struct(&test);
 	free(tmp_map);
 	return (0);

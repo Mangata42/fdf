@@ -47,19 +47,19 @@ t_coords	*ft_add_node(t_coords **coords, int x, int y, int z)
 	{
 		while ((*coords)->next != NULL)
 			(*coords) = (*coords)->next;
-	tmp->next = new_node;
+		(*coords)->next = new_node;
 	}
 	return (*coords);
 }
 
-t_coords	*ft_copy_struct(t_coords *to_copy)
+t_coords	*ft_copy_struct(t_coords **to_copy)
 {
 	t_coords	*new_struct;
 
-	while (to_copy != NULL)
+	while ((*to_copy) != NULL)
 	{
-		ft_add_node(&new_struct, to_copy->x, to_copy->y, to_copy->z);
-		to_copy = to_copy->next;
+		new_struct = ft_add_node(&new_struct, (*to_copy)->x, (*to_copy)->y, (*to_copy)->z);
+		(*to_copy) = (*to_copy)->next;
 	}
 	return (new_struct);
 }
