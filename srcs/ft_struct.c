@@ -6,7 +6,7 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 14:18:40 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/02/23 20:07:59 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/02/23 20:24:39 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,32 +46,22 @@ void	ft_add_node(t_coords **coords, int x, int y, int z)
 		*coords = new_node;
 	else
 	{
-<<<<<<< HEAD
 		tmp = *coords;
 		while (tmp->next != NULL)
 			tmp = tmp->next;
 		tmp->next = new_node;
-=======
-		while ((*coords)->next != NULL)
-			(*coords) = (*coords)->next;
-		(*coords)->next = new_node;
->>>>>>> e5e7e78364ea3cd21ada4127a93b39b47a70c4ed
 	}
 }
 
-t_coords	*ft_copy_struct(t_coords **to_copy)
+t_coords	*ft_copy_struct(t_coords *to_copy)
 {
 	t_coords	*new_struct;
 
-<<<<<<< HEAD
 	new_struct = NULL;
 	while (to_copy != NULL)
-=======
-	while ((*to_copy) != NULL)
->>>>>>> e5e7e78364ea3cd21ada4127a93b39b47a70c4ed
 	{
-		new_struct = ft_add_node(&new_struct, (*to_copy)->x, (*to_copy)->y, (*to_copy)->z);
-		(*to_copy) = (*to_copy)->next;
+		ft_add_node(&new_struct, to_copy->x, to_copy->y, to_copy->z);
+		to_copy = to_copy->next;
 	}
 	return (new_struct);
 }
