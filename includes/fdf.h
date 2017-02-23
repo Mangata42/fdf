@@ -6,7 +6,7 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 15:13:41 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/02/22 15:10:33 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/02/23 19:47:38 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,15 @@ int 				expose_hook(t_env **env);
 int 				ft_read_map(t_env **env, int fd);
 int 				ft_check_map(t_env **env, char *tmp_map);
 void				ft_store_map(t_env **env, char **split_map);
+<<<<<<< HEAD
+void				ft_add_node(t_coords **coords, int x, int y, int z);
+t_coords			*ft_copy_struct(t_coords *to_copy);
+void				ft_print_struct(t_coords *coords);
+=======
 t_coords			*ft_add_node(t_coords **coords, int x, int y, int z);
 t_coords			*ft_copy_struct(t_coords **to_copy);
 void				ft_print_struct(t_coords **coords);
+>>>>>>> e5e7e78364ea3cd21ada4127a93b39b47a70c4ed
 void				ft_free_struct(t_coords **coords);
 void				ft_put_pixel(t_env **env, int pos, void *color);
 void				ft_draw_grind(t_env **env);

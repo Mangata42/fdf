@@ -6,7 +6,7 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 14:18:40 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/02/22 15:13:41 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/02/23 20:08:32 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,13 @@ int 	ft_read_map(t_env **env, int fd)
 	}
 	ft_check_map(env, tmp_map);
 	// ft_draw_grind(env);
+<<<<<<< HEAD
+=======
 	t_coords *test;
 
 	test = ft_copy_struct(&(*env)->coords);
 	ft_print_struct(&test);
+>>>>>>> e5e7e78364ea3cd21ada4127a93b39b47a70c4ed
 	free(tmp_map);
 	return (0);
 }
@@ -75,17 +78,19 @@ void	ft_store_map(t_env **env, char **split_map)
 	y = 0;
 	while (split_map[i] != '\0')
 	{
-		(*env)->coords = ft_add_node(&(*env)->coords, x, y, ft_atoi(split_map[i]));
+		ft_add_node(&(*env)->coords, x, y, ft_atoi(split_map[i]));
 		if (ft_strchr(split_map[i], '\n') != NULL)
 		{
 			if (split_map[i + 1] == '\0')
 				return ;
 			x = 0;
-			(*env)->coords = ft_add_node(&(*env)->coords, x, y, ft_atoi(split_map[i]));
+			ft_add_node(&(*env)->coords, x, y, ft_atoi(split_map[i]));
 			y++;
 		}
 		x++;
 		i++;
 	}
+	*split_map = NULL;
+	split_map = NULL;
 	free(split_map);
 }

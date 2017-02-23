@@ -6,7 +6,7 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 14:18:40 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/02/22 15:18:07 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/02/23 20:07:59 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ t_env	*init_env(void)
 	return (env);
 }
 
-t_coords	*ft_add_node(t_coords **coords, int x, int y, int z)
+void	ft_add_node(t_coords **coords, int x, int y, int z)
 {
 	t_coords	*new_node;
+	t_coords	*tmp;
 
 	new_node = (t_coords *)malloc(sizeof(t_coords));
 	new_node->x = x;
@@ -45,18 +46,29 @@ t_coords	*ft_add_node(t_coords **coords, int x, int y, int z)
 		*coords = new_node;
 	else
 	{
+<<<<<<< HEAD
+		tmp = *coords;
+		while (tmp->next != NULL)
+			tmp = tmp->next;
+		tmp->next = new_node;
+=======
 		while ((*coords)->next != NULL)
 			(*coords) = (*coords)->next;
 		(*coords)->next = new_node;
+>>>>>>> e5e7e78364ea3cd21ada4127a93b39b47a70c4ed
 	}
-	return (*coords);
 }
 
 t_coords	*ft_copy_struct(t_coords **to_copy)
 {
 	t_coords	*new_struct;
 
+<<<<<<< HEAD
+	new_struct = NULL;
+	while (to_copy != NULL)
+=======
 	while ((*to_copy) != NULL)
+>>>>>>> e5e7e78364ea3cd21ada4127a93b39b47a70c4ed
 	{
 		new_struct = ft_add_node(&new_struct, (*to_copy)->x, (*to_copy)->y, (*to_copy)->z);
 		(*to_copy) = (*to_copy)->next;
@@ -75,13 +87,14 @@ void	ft_free_struct(t_coords **to_del)
 		free(tmp);
 	}
 	(*to_del) = NULL;
+	to_del = NULL;
 }
 
-void	ft_print_struct(t_coords **coords)
+void	ft_print_struct(t_coords *coords)
 {
 	t_coords	*to_print;
 
-	to_print = *coords;
+	to_print = coords;
 	while (to_print != NULL)
 	{
 		printf("x = %d, y = %d, z = %d\n", to_print->x, to_print->y, to_print->z);
