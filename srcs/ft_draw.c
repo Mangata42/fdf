@@ -6,7 +6,7 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 10:57:13 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/02/24 16:10:30 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/02/24 20:42:35 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,26 +34,19 @@ void	ft_std_view(t_env **env, t_coords *coords)
 	white = 0xFFFFFF;
 	while (coords != NULL)
 	{
-		color = white - (coords->z) * 100;
-		pos = ((coords->y * (*env)->sl) * 10 + (coords->x * 4) * 10);
+		color = white - ((coords->z) * 10000);
+		pos = ((coords->y * (*env)->sl) * (*env)->step + (coords->x * 4) * (*env)->step);
 		ft_put_pixel(env, pos, &color);
 		coords = coords->next;
 	}	
 }
 
-void	ft_draw_grind(t_env	**env)
+void	ft_iso_view(t_env **env, t_coords *coords)
 {
-	t_coords *to_draw;
-	int 	white;
-	int		pos;
+	;
+}
 
-	to_draw = (*env)->coords;
-	white = 0xFFFFFF;
-	while (to_draw != NULL)
-	{
-		pos = ((to_draw->y) * (*env)->sl) + ((to_draw->x) * 4);
-		ft_put_pixel(env, pos, &white);
-		to_draw = to_draw->next;
-	}
-	expose_hook(env);
+void	ft_paral_view(t_env **env, t_coords *coords)
+{
+	;
 }

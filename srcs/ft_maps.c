@@ -6,7 +6,7 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 14:18:40 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/02/24 16:14:46 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/02/24 20:54:53 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int 	ft_read_map(t_env **env, int fd)
 	}
 	ft_check_map(env, tmp_map);
 	ft_std_view(env, ft_copy_struct((*env)->coords));
-	free(tmp_map);
 	return (0);
 }
 
@@ -75,15 +74,16 @@ void	ft_store_map(t_env **env, char **split_map)
 		if (ft_strchr(split_map[i], '\n') != NULL)
 		{
 			if (split_map[i + 1] == '\0')
+			{
+				(*env)->x_max = x;
+				(*env)->y_max = y;
 				return ;
+			}
 			x = 0;
-			ft_add_node(&(*env)->coords, x, y, ft_atoi(split_map[i]));
 			y++;
+			ft_add_node(&(*env)->coords, x, y, ft_atoi(split_map[i]));
 		}
 		x++;
 		i++;
 	}
-	*split_map = NULL;
-	split_map = NULL;
-	free(split_map);
 }

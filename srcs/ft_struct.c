@@ -6,7 +6,7 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 14:18:40 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/02/23 20:24:39 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/02/24 19:16:06 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@ t_env	*init_env(void)
 		return (NULL);
 	env->coords = NULL;
 	env->mlx = mlx_init();
-	env->w_x = W_X;
-	env->w_y = W_Y;
-	env->win = mlx_new_window(env->mlx, env->w_x, env->w_y, "fdf.c");
-	env->img = mlx_new_image(env->mlx, env->w_x, env->w_y);
+	env->i_x = 0;
+	env->i_y = 0;
+	env->win = mlx_new_window(env->mlx, W_X, W_Y, "fdf.c");
+	env->img = mlx_new_image(env->mlx, W_X, W_Y);
 	env->img_datas = mlx_get_data_addr(env->img, &(env->bpp), &(env->sl), 
 	 		&(env->end));
 	env->step = 10;
+	env->view = 1;
 	if (!env->mlx || !env->win || !env->img)
 		return (NULL);
 	return (env);

@@ -6,7 +6,7 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 15:13:41 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/02/24 16:02:24 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/02/24 20:49:33 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@
 # define W_X 1000
 # define W_Y 1000
 
+# define K_ESC 53
+# define K_UP 126
+# define K_DOWN 125
+# define K_RIGHT 124
+# define K_LEFT 123
+# define K_MIN 27
+# define K_MAX 24
+
 typedef	struct 			s_coords
 {
 	int 			x;
@@ -40,14 +48,17 @@ typedef	struct 			s_env
 	void		*mlx;
 	void		*win;
 	void		*img;
-	int			w_x;
-	int			w_y;
+	int			i_x;
+	int			i_y;
+	int 		x_max;
+	int 		y_max;
 	char		*img_datas;
 	char		**map;
 	int			bpp; //bits per pixel = 32
 	int			sl;  //size line = w_x * (bpp / 8)
 	int			end; //endian
 	int 		step; //zoom
+	int 		view;
 }						t_env;
 
 void				ft_error_handler(int error_code);
