@@ -6,7 +6,7 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 14:18:40 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/02/23 19:31:34 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/02/24 16:16:58 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		expose_hook(t_env **env)
 {	
 	mlx_clear_window((*env)->mlx, (*env)->win);
-	mlx_put_image_to_window((*env)->mlx, (*env)->win, (*env)->img, 0, 0);
+	mlx_put_image_to_window((*env)->mlx, (*env)->win, (*env)->img, , 0);
 	return (0);
 }
 
