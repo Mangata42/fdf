@@ -34,9 +34,12 @@ void	ft_std_view(t_env **env, t_coords *coords)
 	white = 0xFFFFFF;
 	while (coords != NULL)
 	{
-		color = white - ((coords->z) * 10000);
-		pos = ((coords->y * (*env)->sl) * (*env)->step + (coords->x * 4) * (*env)->step);
-		ft_put_pixel(env, pos, &color);
+		if ((coords->x * (*env)->step) < W_X && (coords->y * (*env)->step) < W_Y)
+		{
+			color = white - ((coords->z) * 10000);
+			pos = ((coords->y * (*env)->sl) * (*env)->step + (coords->x * 4) * (*env)->step);
+			ft_put_pixel(env, pos, &color);
+		}
 		coords = coords->next;
 	}	
 }

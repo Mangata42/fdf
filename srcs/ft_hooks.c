@@ -14,15 +14,34 @@
 
 int		expose_hook(t_env **env)
 {	
-	mlx_put_image_to_window((*env)->mlx, (*env)->win, (*env)->img, W_X / 4, W_Y / 4);
+	int x_pos;
+	int y_pos;
+
+	x_pos = ((((W_X / (*env)->x_max)) / 2) * (*env)->x_max) - (*env)->x_max * 4;
+	y_pos = ((((W_Y / (*env)->y_max)) / 2) * (*env)->y_max) - (*env)->y_max * 4;
+	mlx_put_image_to_window((*env)->mlx, (*env)->win, (*env)->img, x_pos, y_pos);
 	return (0);
+}
+
+void	ft_manage_zoom(t_env **env, int keycode)
+{
+	if (keycode == K_MIN)
+		(*env)->step -= 3;
+	if (keycode == K_MAX)
+		(*env)->step += 3;
+	if ((*env)->step <= 0)
+		(*env)->step = 0;
+	mlx_destroy_image((*env)->mlx, (*env)->img);
+	(*env)->img = mlx_new_image((*env)->mlx, W_X, W_Y);
+	ft_std_view(env, ft_copy_struct((*env)->coords));
+	expose_hook(env);
 }
 
 int 	key_hook(int keycode, t_env **env)
 {
 	if (keycode == K_ESC)
 		exit(EXIT_SUCCESS);
-	ft_std_view(env, ft_copy_struct((*env)->coords));
-	expose_hook(env);
+	if (keycode == K_MIN || keycode == K_MAX)
+		ft_manage_zoom(env, keycode);
 	return (0);
 }

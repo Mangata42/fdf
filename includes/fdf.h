@@ -23,8 +23,8 @@
 # include <stdlib.h>
 # include <math.h>
 
-# define W_X 1000
-# define W_Y 1000
+# define W_X 500
+# define W_Y 500
 
 # define K_ESC 53
 # define K_UP 126
@@ -57,7 +57,7 @@ typedef	struct 			s_env
 	int			bpp; //bits per pixel = 32
 	int			sl;  //size line = w_x * (bpp / 8)
 	int			end; //endian
-	int 		step; //zoom
+	int 		step;
 	int 		view;
 }						t_env;
 
