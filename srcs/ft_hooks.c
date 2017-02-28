@@ -6,7 +6,7 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 14:18:40 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/02/24 21:19:14 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/02/28 14:25:24 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int		expose_hook(t_env **env)
 {	
-	int x_pos;
-	int y_pos;
+	// int x_pos;
+	// int y_pos;
 
-	x_pos = ((((W_X / (*env)->x_max)) / 2) * (*env)->x_max) - (*env)->x_max * 4;
-	y_pos = ((((W_Y / (*env)->y_max)) / 2) * (*env)->y_max) - (*env)->y_max * 4;
-	mlx_put_image_to_window((*env)->mlx, (*env)->win, (*env)->img, x_pos, y_pos);
+	// x_pos = ((((W_X / (*env)->x_max)) / 2) * (*env)->x_max) - (*env)->x_max * 4;
+	// y_pos = ((((W_Y / (*env)->y_max)) / 2) * (*env)->y_max) - (*env)->y_max * 4;
+	mlx_put_image_to_window((*env)->mlx, (*env)->win, (*env)->img, 250, 250);
 	return (0);
 }
 
@@ -33,7 +33,7 @@ void	ft_manage_zoom(t_env **env, int keycode)
 		(*env)->step = 0;
 	mlx_destroy_image((*env)->mlx, (*env)->img);
 	(*env)->img = mlx_new_image((*env)->mlx, W_X, W_Y);
-	ft_std_view(env, ft_copy_struct((*env)->coords));
+	ft_iso_view(env, ft_copy_struct((*env)->coords));
 	expose_hook(env);
 }
 
