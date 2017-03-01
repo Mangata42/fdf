@@ -6,7 +6,7 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 14:18:40 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/02/28 14:25:24 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/03/01 12:21:36 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_manage_zoom(t_env **env, int keycode)
 		(*env)->step = 0;
 	mlx_destroy_image((*env)->mlx, (*env)->img);
 	(*env)->img = mlx_new_image((*env)->mlx, W_X, W_Y);
-	ft_iso_view(env, ft_copy_struct((*env)->coords));
+	ft_std_view(env, ft_copy_struct((*env)->coords));
 	expose_hook(env);
 }
 

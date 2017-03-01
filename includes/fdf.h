@@ -6,7 +6,7 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 15:13:41 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/02/28 14:02:15 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/03/01 15:00:51 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,11 @@ t_coords			*ft_copy_struct(t_coords *to_copy);
 void				ft_print_struct(t_coords *coords);
 void				ft_free_struct(t_coords **coords);
 void				ft_put_pixel(t_env **env, int pos, void *color);
+void				ft_print_grind(t_env **env, t_coords *coords);
+void				ft_std_view(t_env **env, t_coords *coords);
 void				ft_iso_view(t_env **env, t_coords *coords);
+void 				ft_paral_view(t_env **env, t_coords *coords);
+void				ft_con_view(t_env **env, t_coords *coords);
 void				ft_draw_grind(t_env **env);
 t_env				*init_env(void);
 
