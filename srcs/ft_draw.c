@@ -6,7 +6,7 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 10:57:13 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/03/01 17:40:16 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/03/02 17:59:47 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 /* Vue isométrique, parallèle et conique */
 
-
 void	ft_print_grind(t_env **env, t_coords *coords)
 {
 	int color;
-
+	int pos;
 	while (coords != NULL)
 	{
 		color = 0xFFFFFF - (coords->z * 10000);
-		ft_put_pixel(env, coords->x + coords->y, &color);
+		pos = (coords->y * (*env)->sl) + (coords->x * 4);
+		ft_put_pixel(env, pos + (250 * 2000 + 250 * 4), &color);
 		coords = coords->next;
 	}
 }
@@ -45,51 +45,45 @@ void	ft_std_view(t_env **env, t_coords *coords)
 	tmp = coords;
 	while (tmp != NULL)
 	{
-		tmp->x = (tmp->x * 4) * (*env)->step;
-		tmp->y = ((tmp->y) * (*env)->sl) * (*env)->step; 
+		tmp->x = (tmp->x) * (*env)->step;
+		tmp->y = (tmp->y) * (*env)->step; 
 		tmp = tmp->next;
 	}
-	ft_print_struct(coords);
+	ft_print_grind(env, coords);
 }
 
 void	ft_iso_view(t_env **env, t_coords *coords)
 {
 	t_coords *tmp;
+	int	posx;
+	int posy;
 
 	tmp = coords;
 	while (tmp != NULL)
 	{
-		tmp->x = ft_abs(((tmp->x * 4) - (tmp->y) * 5));
-		tmp->y = ft_abs(((tmp->y) + (tmp->x * 4) * 5));
+		posx = ((tmp->x) - (tmp->y)) * (*env)->step;
+		posy = ((tmp->x) + (tmp->y)) * (*env)->step / 2;
+		tmp->x = posx;
+		tmp->y = posy;
 		tmp = tmp->next;
 	}
-	ft_print_struct(coords);
+	ft_print_grind(env, coords);
 }	
 
-// void	ft_con_view(t_env **env, t_coords *coords)
-// {
-// 	t_coords *tmp;
+void	ft_paral_view(t_env **env, t_coords *coords)
+{
+	t_coords *tmp;
+	int	posx;
+	int posy;
 
-// 	tmp = coords;
-// 	while (tmp != NULL)
-// 	{
-// 		tmp->x = ((tmp->x * 4) - (tmp->y)) * 5;
-// 		tmp->y = ((tmp->y) + (tmp->x * 4)) * 5; 
-// 		tmp = tmp->next;
-// 	}
-// 	ft_print_grind(env, coords);
-// }
-
-// void	ft_paral_view(t_env **env, t_coords *coords)
-// {
-// 	t_coords *tmp;
-
-// 	tmp = coords;
-// 	while (tmp != NULL)
-// 	{
-// 		tmp->x = (tmp->x * 4) * (*env)->step;
-// 		tmp->y = ((tmp->y) * (*env)->sl) * (*env)->step; 
-// 		tmp = tmp->next;
-// 	}
-// 	ft_print_grind(env, coords);
-// }
+	tmp = coords;
+	while (tmp != NULL)
+	{
+		posx = ((tmp->x) - (tmp->y)) * (*env)->step;
+		posy = ((tmp->x) + (tmp->y)) * (*env)->step;
+		tmp->x = posx;
+		tmp->y = posy;
+		tmp = tmp->next;
+	}
+	ft_print_grind(env, coords);
+}

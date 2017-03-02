@@ -6,7 +6,7 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 14:18:40 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/03/01 17:37:53 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/03/02 18:11:24 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int 	ft_read_map(t_env **env, int fd)
 	}
 	ft_check_map(env, tmp_map);
 	ft_std_view(env, ft_copy_struct((*env)->coords));
-	ft_iso_view(env, ft_copy_struct((*env)->coords));
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 15:13:41 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/03/01 15:00:51 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/03/02 17:59:59 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 # define W_X 1000
 # define W_Y 1000
 
+# define K_1 18
+# define K_2 19
+# define K_3 20
 # define K_ESC 53
 # define K_UP 126
 # define K_DOWN 125
