@@ -6,13 +6,13 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 14:18:40 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/03/02 15:36:45 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/03/16 22:45:50 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-t_env	*init_env(void)
+t_env		*init_env(void)
 {
 	t_env	*env;
 
@@ -31,7 +31,7 @@ t_env	*init_env(void)
 	return (env);
 }
 
-void	ft_add_node(t_coords **coords, int x, int y, int z)
+void		ft_add_node(t_coords **coords, int x, int y, int z)
 {
 	t_coords	*new_node;
 	t_coords	*tmp;
@@ -53,6 +53,16 @@ void	ft_add_node(t_coords **coords, int x, int y, int z)
 	}
 }
 
+t_coords	*ft_move_node(t_coords *coords, int pos)
+{
+	t_coords *tmp;
+
+	tmp = coords;
+	for (int i = 0; i < pos; i++)
+		tmp = tmp->next;
+	return (tmp);
+}
+
 t_coords	*ft_copy_struct(t_coords *to_copy)
 {
 	t_coords	*new_struct;
@@ -66,7 +76,7 @@ t_coords	*ft_copy_struct(t_coords *to_copy)
 	return (new_struct);
 }
 
-void	ft_free_struct(t_coords **to_del)
+void		ft_free_struct(t_coords **to_del)
 {
 	t_coords *tmp;
 
@@ -78,17 +88,4 @@ void	ft_free_struct(t_coords **to_del)
 	}
 	(*to_del) = NULL;
 	to_del = NULL;
-}
-
-void	ft_print_struct(t_coords *coords)
-{
-	t_coords	*to_print;
-
-	to_print = coords;
-	while (to_print != NULL)
-	{
-		printf("x = %d, y = %d, z = %d\n", to_print->x, to_print->y, to_print->z);
-		to_print = to_print->next;
-	}
-	printf("NULL\n");
 }

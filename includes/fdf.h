@@ -6,7 +6,7 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 15:13:41 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/03/02 17:59:59 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/03/16 21:31:57 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include <stdlib.h>
 # include <math.h>
 
-# define W_X 500
-# define W_Y 500
+# define W_X 1000
+# define W_Y 1000
 
 # define K_1 18
 # define K_2 19
@@ -80,10 +80,11 @@ int 				ft_read_map(t_env **env, int fd);
 int 				ft_check_map(t_env **env, char *tmp_map);
 void				ft_store_map(t_env **env, char **split_map);
 void				ft_add_node(t_coords **coords, int x, int y, int z);
+t_coords			*ft_move_node(t_coords *coords, int pos);
 t_coords			*ft_copy_struct(t_coords *to_copy);
 void				ft_print_struct(t_coords *coords);
 void				ft_free_struct(t_coords **coords);
-void				ft_put_pixel(t_env **env, int pos, void *color);
+void				ft_put_pixel(t_env **env, int pos);
 void				ft_print_grind(t_env **env, t_coords *coords);
 void				ft_manage_view(t_env **env);
 void				ft_std_view(t_env **env, t_coords *coords);
