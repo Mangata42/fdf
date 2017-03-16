@@ -17,7 +17,8 @@ SRC = fdf.c \
 		ft_errors.c \
 		ft_hooks.c \
 		ft_maps.c \
-		ft_draw.c
+		ft_draw.c \
+		ft_bres.c
 
 SRCDIR = ./srcs/
 LIBS = -framework OpenGL -framework AppKit -L ./libs -l ft -l mlx

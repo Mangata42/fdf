@@ -31,7 +31,8 @@ int 	ft_read_map(t_env **env, int fd)
 		free(line);
 	}
 	ft_check_map(env, tmp_map);
-	ft_std_view(env, ft_copy_struct((*env)->coords));
+	ft_manage_view(env);
+	free(tmp_map);
 	return (0);
 }
 

@@ -20,14 +20,12 @@ t_env	*init_env(void)
 		return (NULL);
 	env->coords = NULL;
 	env->mlx = mlx_init();
-	env->i_x = 0;
-	env->i_y = 0;
-	env->win = mlx_new_window(env->mlx, W_X, W_Y, "fdf.c");
+	env->win = mlx_new_window(env->mlx, W_X, W_Y, "fdf");
 	env->img = mlx_new_image(env->mlx, W_X, W_Y);
 	env->img_datas = mlx_get_data_addr(env->img, &(env->bpp), &(env->sl), 
 	 		&(env->end));
 	env->step = 10;
-	env->view = 1;
+	env->view = 2;
 	if (!env->mlx || !env->win || !env->img)
 		return (NULL);
 	return (env);
@@ -42,6 +40,7 @@ void	ft_add_node(t_coords **coords, int x, int y, int z)
 	new_node->x = x;
 	new_node->y = y;
 	new_node->z = z;
+	new_node->col = 0xFFFFFF;
 	new_node->next = NULL;
 	if (*coords == NULL)
 		*coords = new_node;
