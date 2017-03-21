@@ -6,7 +6,7 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 14:18:40 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/03/16 22:45:50 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/03/21 06:20:17 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,13 @@ t_env		*init_env(void)
 	env->mlx = mlx_init();
 	env->win = mlx_new_window(env->mlx, W_X, W_Y, "fdf");
 	env->img = mlx_new_image(env->mlx, W_X, W_Y);
-	env->img_datas = mlx_get_data_addr(env->img, &(env->bpp), &(env->sl), 
-	 		&(env->end));
+	env->img_datas = mlx_get_data_addr(env->img, &(env->bpp), &(env->sl),
+			&(env->end));
 	env->step = 10;
 	env->view = 2;
+	env->x_pos = W_X / 4;
+	env->y_pos = W_Y / 4;
+	env->height = 0;
 	if (!env->mlx || !env->win || !env->img)
 		return (NULL);
 	return (env);
@@ -40,7 +43,7 @@ void		ft_add_node(t_coords **coords, int x, int y, int z)
 	new_node->x = x;
 	new_node->y = y;
 	new_node->z = z;
-	new_node->col = 0xFFFFFF;
+	new_node->col = 0xFFF000 - (y * 0xFF0);
 	new_node->next = NULL;
 	if (*coords == NULL)
 		*coords = new_node;
@@ -55,10 +58,12 @@ void		ft_add_node(t_coords **coords, int x, int y, int z)
 
 t_coords	*ft_move_node(t_coords *coords, int pos)
 {
-	t_coords *tmp;
+	t_coords	*tmp;
+	int			i;
 
+	i = -1;
 	tmp = coords;
-	for (int i = 0; i < pos; i++)
+	while ((++i) < pos)
 		tmp = tmp->next;
 	return (tmp);
 }

@@ -6,7 +6,7 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 14:18:40 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/02/23 19:31:13 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/03/21 04:13:34 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int		main(int argc, char **argv)
 {
 	t_env	*env;
-	int 	fd;
+	int		fd;
 
 	if (argc != 2)
 		ft_error_handler(6);
@@ -27,6 +27,7 @@ int		main(int argc, char **argv)
 		ft_error_handler(3);
 	mlx_expose_hook(env->win, expose_hook, &env);
 	mlx_key_hook(env->win, key_hook, &env);
+	mlx_mouse_hook(env->win, mouse_hook, &env);
 	mlx_loop(env->mlx);
 	return (0);
 }

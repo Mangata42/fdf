@@ -6,20 +6,20 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 14:18:40 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/03/02 18:11:24 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/03/21 04:21:51 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int 	ft_read_map(t_env **env, int fd)
+int		ft_read_map(t_env **env, int fd)
 {
 	char	*line;
 	char	*tmp_map;
-	int 	ret;
+	int		ret;
 
 	ret = 42;
-	tmp_map = (char *)malloc(1); //useful to realloc
+	tmp_map = (char *)malloc(1);
 	while (ret > 0)
 	{
 		ret = get_next_line(fd, &line);
@@ -53,7 +53,7 @@ int		ft_check_map(t_env **env, char *tmp_map)
 		{
 			if (ft_isdigit(split_map[y][x]) == 0 && split_map[y][x] != '\n'
 					&& split_map[y][x] != '-')
-	 			ft_error_handler(5);
+				ft_error_handler(5);
 		}
 	}
 	ft_store_map(env, split_map);
