@@ -6,11 +6,21 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 14:18:40 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/03/21 06:20:17 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/03/28 19:28:12 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+
+void		ft_print_struct(t_coords *coords)
+{
+	while (coords)
+	{
+		printf("x = %d  y = %d  z = %d\n", coords->x, coords->y, coords->z);
+		coords = coords->next;
+	}
+}
 
 t_env		*init_env(void)
 {

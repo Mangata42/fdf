@@ -6,7 +6,7 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/16 21:15:20 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/03/21 06:13:32 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/03/28 19:33:13 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_line(t_env **env, t_coords a, t_coords b)
 	while (1)
 	{
 		if ((a.x < W_X && a.y < W_Y) && (a.x > 0 && a.y > 0))
-			ft_put_pixel(env, (a.x * 4) + (a.y * (*env)->sl), a.col);
+			ft_put_pixel(env, (a.x * 4) + (a.y * (*env)->sl), 0xFFFFFF);
 		if (a.x == b.x && a.y == b.y)
 			break ;
 		line.e2 = line.err;

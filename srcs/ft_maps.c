@@ -6,85 +6,51 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 14:18:40 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/03/21 04:21:51 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/03/28 21:39:48 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
+void	ft_verify_line(char *line);
+
 int		ft_read_map(t_env **env, int fd)
 {
-	char	*line;
-	char	*tmp_map;
-	int		ret;
+	char *line;
+	char **tmp;
+	int x;
+	int y;
 
-	ret = 42;
-	tmp_map = (char *)malloc(1);
-	while (ret > 0)
+	x = -1;
+	y = 0;
+	while (get_next_line(fd, &line) > 0)
 	{
-		ret = get_next_line(fd, &line);
-		if (ret == -1)
-			ft_error_handler(2);
-		tmp_map = ft_realloc((void **)&tmp_map, ft_strlen(line) + 3);
-		tmp_map = ft_strcat(tmp_map, line);
-		tmp_map = ft_strcat(tmp_map, "\n");
+		tmp = ft_strsplit(line, ' ');
+		while (*tmp)
+		{
+			ft_verify_line(*tmp);
+			ft_add_node(&(*env)->coords, ++x, y, ft_atoi(*tmp));
+			tmp++;
+		}
+		(*env)->x_max = x;
+		x = -1;
+		y++;
 		free(line);
 	}
-	ft_check_map(env, tmp_map);
+	(*env)->y_max = y - 1;
 	ft_manage_view(env);
-	free(tmp_map);
 	return (0);
 }
 
-int		ft_check_map(t_env **env, char *tmp_map)
+void		ft_verify_line(char *line)
 {
-	char	**split_map;
-	int		x;
-	int		y;
+	int i;
 
-	if (ft_strlen(tmp_map) <= 1)
-		ft_error_handler(4);
-	split_map = ft_strsplit(tmp_map, ' ');
-	y = -1;
-	while (split_map[++y])
+	i = -1;
+	while (line[++i] != '\0')
 	{
-		x = -1;
-		while (split_map[y][++x])
-		{
-			if (ft_isdigit(split_map[y][x]) == 0 && split_map[y][x] != '\n'
-					&& split_map[y][x] != '-')
+		if (ft_isdigit(line[i]) == 0 && line[i] != '\n'
+					&& line[i] != '-' && line[i] != ' ')
 				ft_error_handler(5);
-		}
-	}
-	ft_store_map(env, split_map);
-	return (0);
-}
-
-void	ft_store_map(t_env **env, char **split_map)
-{
-	int	x;
-	int	y;
-	int	i;
-
-	i = 0;
-	x = 0;
-	y = 0;
-	while (split_map[i] != '\0')
-	{
-		ft_add_node(&(*env)->coords, x, y, ft_atoi(split_map[i]));
-		if (ft_strchr(split_map[i], '\n') != NULL)
-		{
-			if (split_map[i + 1] == '\0')
-			{
-				(*env)->x_max = x;
-				(*env)->y_max = y;
-				return ;
-			}
-			x = 0;
-			y++;
-			ft_add_node(&(*env)->coords, x, y, ft_atoi(split_map[i]));
-		}
-		x++;
-		i++;
 	}
 }

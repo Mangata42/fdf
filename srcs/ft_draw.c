@@ -6,7 +6,7 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 10:57:13 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/03/21 06:11:48 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/03/28 19:47:02 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ft_put_pixel(t_env **env, int pos, unsigned int color)
 {
 	unsigned int mask;
 
+	color = 0xEF4714;
 	mask = 0xFF & color;
 	(*env)->img_datas[pos] = mask;
 	mask = 0xFF & (color >> 8);
