@@ -6,7 +6,7 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 14:18:40 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/03/21 09:41:05 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/03/30 17:22:22 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	ft_manage_zoom(t_env **env, int keycode)
 void	ft_manage_view(t_env **env)
 {
 	mlx_destroy_image((*env)->mlx, (*env)->img);
+	if ((*env)->coords == NULL)
+		ft_error_handler(4);
 	(*env)->img = mlx_new_image((*env)->mlx, W_X, W_Y);
 	if ((*env)->view == 1)
 		ft_std_view(env, ft_copy_struct((*env)->coords));
@@ -56,7 +58,11 @@ int		mouse_hook(int button, int x, int y, t_env **env)
 int		key_hook(int keycode, t_env **env)
 {
 	if (keycode == K_ESC)
+	{
+		ft_free_struct((*env)->coords);
+		free((*env));
 		exit(EXIT_SUCCESS);
+	}
 	if (keycode == K_1 || keycode == K_2 || keycode == K_3)
 		ft_change_view(env, keycode);
 	if (keycode == K_MIN || keycode == K_MAX)

@@ -6,26 +6,11 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 10:57:13 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/03/28 19:47:02 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/03/30 17:25:42 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-
-void	ft_free_struct(t_coords *coords)
-{
-	t_coords *tmp;
-
-	tmp = coords;
-	while (coords->next != NULL)
-	{
-		tmp = coords;
-		coords = coords->next;
-		free(tmp);
-	}
-	coords = NULL;
-	free(coords);
-}
 
 void	ft_screen_pos(t_env **env, t_coords *coords)
 {
@@ -44,7 +29,7 @@ void	ft_put_pixel(t_env **env, int pos, unsigned int color)
 {
 	unsigned int mask;
 
-	color = 0xEF4714;
+	color = 0x00FF00;
 	mask = 0xFF & color;
 	(*env)->img_datas[pos] = mask;
 	mask = 0xFF & (color >> 8);

@@ -6,7 +6,7 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/03 15:13:41 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/03/28 21:17:17 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/03/30 14:35:27 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include <stdlib.h>
 # include <math.h>
 
-# define W_X 750
-# define W_Y 750
+# define W_X 2000
+# define W_Y 2000
 
 # define K_1 18
 # define K_2 19
@@ -103,5 +103,7 @@ void				ft_manage_mov(t_env **env, int keycode);
 void				ft_manage_height(t_env **env, int keycode);
 int					mouse_hook(int button, int x, int y, t_env **env);
 void				ft_change_view(t_env **env, int keycode);
+void				ft_free_struct(t_coords *coords);
+void				ft_free_env(t_env **env);
 
 #endif

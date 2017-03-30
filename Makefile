@@ -6,7 +6,7 @@
 #    By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/03 15:18:33 by nghaddar          #+#    #+#              #
-#    Updated: 2017/03/28 19:03:05 by nghaddar         ###   ########.fr        #
+#    Updated: 2017/03/30 17:59:50 by nghaddar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,13 +30,13 @@ all: $(NAME)
 
 $(NAME):
 	make -C ./libs/libft
-	gcc $(LIBS) $(SRCS) -o $(NAME)
+	gcc $(FLAGS) $(LIBS) $(SRCS) -o $(NAME)
 
 clean:
-	rm -rf $(NAME)
 	make -C./libs/libft clean
 
 fclean: clean
+	rm -rf $(NAME)
 	make -C ./libs/libft fclean
 
 re: fclean all

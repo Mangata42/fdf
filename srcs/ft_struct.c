@@ -6,7 +6,7 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 14:18:40 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/03/28 19:28:12 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/03/30 17:49:46 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,19 @@ t_coords	*ft_copy_struct(t_coords *to_copy)
 		to_copy = to_copy->next;
 	}
 	return (new_struct);
+}
+
+void		ft_free_struct(t_coords *coords)
+{
+	t_coords *tmp;
+
+	tmp = coords;
+	while (coords->next != NULL)
+	{
+		tmp = coords;
+		coords = coords->next;
+		free(tmp);
+	}
+	coords = NULL;
+	free(coords);
 }

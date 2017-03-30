@@ -6,36 +6,36 @@
 /*   By: nghaddar <nghaddar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/13 14:18:40 by nghaddar          #+#    #+#             */
-/*   Updated: 2017/03/28 21:39:48 by nghaddar         ###   ########.fr       */
+/*   Updated: 2017/03/30 17:45:47 by nghaddar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	ft_free_tmp(char **array)
+int		ft_test_ret(int ret)
 {
-	while (*array)
-	{
-		free(*array);
-		array++;
-	}
+	if (ret < 0)
+		ft_error_handler(3);
+	if (ret == 0)
+		return (0);
+	return (1);
 }
 
 int		ft_read_map(t_env **env, int fd)
 {
-	char *line;
-	char **tmp;
-	int x;
-	int y;
+	char	*line;
+	char	**tmp;
+	int		x;
+	int		y;
 
 	x = -1;
 	y = 0;
-	while (get_next_line(fd, &line) > 0)
+	while (ft_test_ret(get_next_line(fd, &line)) > 0)
 	{
 		tmp = ft_strsplit(line, ' ');
+		ft_verify_line(line);
 		while (*tmp)
 		{
-			ft_verify_line(*tmp);
 			ft_add_node(&(*env)->coords, ++x, y, ft_atoi(*tmp));
 			tmp++;
 		}
@@ -45,12 +45,11 @@ int		ft_read_map(t_env **env, int fd)
 		free(line);
 	}
 	(*env)->y_max = y - 1;
-	ft_free_tmp(tmp);
 	ft_manage_view(env);
 	return (0);
 }
 
-void		ft_verify_line(char *line)
+void	ft_verify_line(char *line)
 {
 	int i;
 
@@ -58,7 +57,7 @@ void		ft_verify_line(char *line)
 	while (line[++i] != '\0')
 	{
 		if (ft_isdigit(line[i]) == 0 && line[i] != '\n'
-					&& line[i] != '-' && line[i] != ' ')
-				ft_error_handler(5);
+			&& line[i] != '-' && line[i] != ' ')
+			ft_error_handler(5);
 	}
 }
