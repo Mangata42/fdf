@@ -12,6 +12,21 @@
 
 #include "../includes/fdf.h"
 
+void	ft_free_struct(t_coords *coords)
+{
+	t_coords *tmp;
+
+	tmp = coords;
+	while (coords->next != NULL)
+	{
+		tmp = coords;
+		coords = coords->next;
+		free(tmp);
+	}
+	coords = NULL;
+	free(coords);
+}
+
 void	ft_screen_pos(t_env **env, t_coords *coords)
 {
 	t_coords *tmp;
@@ -55,6 +70,7 @@ void	ft_std_view(t_env **env, t_coords *coords)
 	}
 	ft_screen_pos(env, coords);
 	ft_horizontal_draw(env, coords);
+	ft_free_struct(coords);
 }
 
 void	ft_iso_view(t_env **env, t_coords *coords)
@@ -76,6 +92,7 @@ void	ft_iso_view(t_env **env, t_coords *coords)
 	}
 	ft_screen_pos(env, coords);
 	ft_horizontal_draw(env, coords);
+	ft_free_struct(coords);
 }
 
 void	ft_paral_view(t_env **env, t_coords *coords)
@@ -97,4 +114,5 @@ void	ft_paral_view(t_env **env, t_coords *coords)
 	}
 	ft_screen_pos(env, coords);
 	ft_horizontal_draw(env, coords);
+	ft_free_struct(coords);
 }

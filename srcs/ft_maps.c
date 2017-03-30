@@ -12,7 +12,14 @@
 
 #include "../includes/fdf.h"
 
-void	ft_verify_line(char *line);
+void	ft_free_tmp(char **array)
+{
+	while (*array)
+	{
+		free(*array);
+		array++;
+	}
+}
 
 int		ft_read_map(t_env **env, int fd)
 {
@@ -38,6 +45,7 @@ int		ft_read_map(t_env **env, int fd)
 		free(line);
 	}
 	(*env)->y_max = y - 1;
+	ft_free_tmp(tmp);
 	ft_manage_view(env);
 	return (0);
 }

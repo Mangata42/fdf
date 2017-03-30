@@ -23,8 +23,8 @@
 # include <stdlib.h>
 # include <math.h>
 
-# define W_X 1000
-# define W_Y 1000
+# define W_X 750
+# define W_Y 750
 
 # define K_1 18
 # define K_2 19
@@ -64,13 +64,12 @@ typedef	struct		s_env
 	void			*mlx;
 	void			*win;
 	void			*img;
-	int				x_max;
-	int				y_max;
 	char			*img_datas;
-	char			**map;
 	int				bpp;
 	int				sl;
 	int				end;
+	int				x_max;
+	int				y_max;
 	int				step;
 	int				view;
 	int				x_pos;
@@ -82,11 +81,11 @@ void				ft_error_handler(int error_code);
 int					key_hook(int keycode, t_env **env);
 int					expose_hook(t_env **env);
 int					ft_read_map(t_env **env, int fd);
+void				ft_verify_line(char *line);
 void				ft_add_node(t_coords **coords, int x, int y, int z);
 t_coords			*ft_move_node(t_coords *coords, int pos);
 t_coords			*ft_copy_struct(t_coords *to_copy);
 void				ft_print_struct(t_coords *coords);
-void				ft_free_struct(t_coords **coords);
 void				ft_put_pixel(t_env **env, int pos, unsigned int color);
 void				ft_print_grind(t_env **env, t_coords *coords);
 void				ft_manage_view(t_env **env);
@@ -104,7 +103,5 @@ void				ft_manage_mov(t_env **env, int keycode);
 void				ft_manage_height(t_env **env, int keycode);
 int					mouse_hook(int button, int x, int y, t_env **env);
 void				ft_change_view(t_env **env, int keycode);
-
-void				ft_print_struct(t_coords *coords);
 
 #endif

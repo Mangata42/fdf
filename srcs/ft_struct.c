@@ -12,16 +12,6 @@
 
 #include "../includes/fdf.h"
 
-
-void		ft_print_struct(t_coords *coords)
-{
-	while (coords)
-	{
-		printf("x = %d  y = %d  z = %d\n", coords->x, coords->y, coords->z);
-		coords = coords->next;
-	}
-}
-
 t_env		*init_env(void)
 {
 	t_env	*env;
@@ -89,18 +79,4 @@ t_coords	*ft_copy_struct(t_coords *to_copy)
 		to_copy = to_copy->next;
 	}
 	return (new_struct);
-}
-
-void		ft_free_struct(t_coords **to_del)
-{
-	t_coords *tmp;
-
-	while ((*to_del) != NULL)
-	{
-		tmp = (*to_del);
-		(*to_del) = (*to_del)->next;
-		free(tmp);
-	}
-	(*to_del) = NULL;
-	to_del = NULL;
 }
