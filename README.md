@@ -13,7 +13,7 @@ Projections are
 <li>Compiling </li>
   <code>make</code>
  <li> Running </li>
-  <code> ./fdf ./maps/[map].fdf
+  <code> ./fdf ./maps/[map].fdf </code>
  <li>Cleaning</li>
     <code>fclean</code>
  <li>Recompiling</li>
