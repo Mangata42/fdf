@@ -20,7 +20,7 @@ Projections are
   <code>make re</code>
  </ul>
 
- You can use maps in the maps folder or create your own. Maps must be square, and the numbers which define the height must be integers. 
-You can zoom by using your mouse scroll or with '-' and '+' on your keyboard. 
-You can move with the directional keys. 
+You can use maps in the maps folder or create your own. Maps must be square, and the numbers which define the height must be integers. <br>
+You can zoom by using your mouse scroll or with '-' and '+' on your keyboard. <br>
+You can move with the directional keys. <br>
 You can change the height with 'q' to decrease, and 'w' to increase. 
